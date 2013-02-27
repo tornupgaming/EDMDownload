@@ -11,7 +11,7 @@ namespace EDMDownload
 {
     class LivingElectroCrawler
     {
-        private const int MAX_PAGES = 50;
+        public static int MAX_PAGES = 50;
 
         public static void RunCrawl()
         {

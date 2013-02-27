@@ -7,3 +7,12 @@ C:\Users\Phil\documents\visual studio 2010\Projects\EDMDownload\EDMDownload\bin\
 C:\Users\Phil\documents\visual studio 2010\Projects\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Phil\documents\visual studio 2010\Projects\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\Phil\documents\visual studio 2010\Projects\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\EDMDownload.exe.config
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\EDMDownload.exe
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\EDMDownload.pdb
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\EDMDownload.exe
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\EDMDownload.pdb
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\ResolveAssemblyReference.cache
