@@ -34,7 +34,7 @@ namespace EDMDownload
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception: " + e.Message);
+                LogHandler.Log("Exception: " + e.Message);
                 return new MusicTrackCollection();
             }
         }

@@ -19,7 +19,7 @@ namespace EDMDownload
 
             for (int i = 0; i < MAX_PAGES; i++)
             {
-                Console.WriteLine("Loading Page: " + (i+1).ToString());
+                LogHandler.Log("Loading Page: " + (i + 1).ToString());
                 HttpWebRequest httpRequest = HtmlHelper.GenerateHttpRequest("http://www.livingelectro.com/All/" + (i+1).ToString(), cookies);
                 HttpWebResponse myHttpWebResponse = (HttpWebResponse)httpRequest.GetResponse();
                 var html = new StreamReader(myHttpWebResponse.GetResponseStream()).ReadToEnd();
@@ -27,7 +27,7 @@ namespace EDMDownload
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(html);
                 ParseTrackList(doc);
-                Console.WriteLine("Finished Page: " + (i + 1).ToString());
+                LogHandler.Log("Finished Page: " + (i + 1).ToString());
                 MusicTrackCollection.SaveToDisk();
             }
 
@@ -43,12 +43,12 @@ namespace EDMDownload
                 }
             }
 
-            Console.WriteLine("Finished Living Electro Crawl");
+            LogHandler.Log("Finished Living Electro Crawl");
         }
 
         private static void GetDownloadLinkForLETrack(MusicTrack track)
         {
-            Console.Write("Get download link: " + ((track.Title.Length > 50) ? track.Title.Substring(0, 50) : track.Title)+"...");
+            LogHandler.Log("DL link: " + ((track.Title.Length > 50) ? track.Title.Substring(0, 50) : track.Title) + "...");
             System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
             watch.Start();
             HttpWebRequest httpRequest = HtmlHelper.GenerateHttpRequest(track.PageLink, new CookieContainer());
@@ -64,7 +64,7 @@ namespace EDMDownload
                 track.DownloadLink = hrefNode.GetAttributeValue("href", "");
             }
             watch.Stop();
-            Console.WriteLine("("+watch.ElapsedMilliseconds.ToString("N0")+"ms)");
+            LogHandler.Log("(" + watch.ElapsedMilliseconds.ToString("N0") + "ms)");
         }
 
         private static void ParseTrackList(HtmlDocument doc)

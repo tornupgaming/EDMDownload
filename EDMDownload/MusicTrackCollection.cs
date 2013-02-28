@@ -28,12 +28,11 @@ namespace EDMDownload
                 MusicTrack t_Track = Tracks[i];
                 if (track.PageLink.CompareTo(t_Track.PageLink) == 0)
                 {
-                    //Console.WriteLine("Duplicate track: " + ((track.Title.Length > 40) ? track.Title.Substring(0, 40) : track.Title));
                     return;
                 }
             }
 
-            Console.WriteLine("Added new track: " + ((track.Title.Length > 60) ? track.Title.Substring(0, 60) : track.Title));
+            LogHandler.Log("New: " + ((track.Title.Length > 60) ? track.Title.Substring(0, 60) : track.Title));
             Tracks.Add(track);
         }
 

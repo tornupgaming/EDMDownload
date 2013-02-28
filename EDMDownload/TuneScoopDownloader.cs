@@ -35,13 +35,13 @@ namespace EDMDownload
             }
             else
             {
-                Console.WriteLine("Download Link EMPTY!!! " + m_Track.Title);
+                LogHandler.Log("Download Link EMPTY!!! " + m_Track.Title);
             }
         }
 
         private void DownloadFileSync()
         {
-            Console.Write("Downloading: " + ((m_Track.Title.Length > 60) ? m_Track.Title.Substring(0, 60) : m_Track.Title) + "...");
+            LogHandler.Log("DL: " + ((m_Track.Title.Length > 60) ? m_Track.Title.Substring(0, 60) : m_Track.Title) + "...");
             System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
             watch.Start(); 
             CookieContainer cookies = new CookieContainer();
@@ -56,7 +56,7 @@ namespace EDMDownload
             {
                 if (webEx.Status == WebExceptionStatus.ProtocolError)
                 {
-                    Console.WriteLine("(BROKEN LINK)");
+                    LogHandler.Log("(BROKEN LINK)");
                     m_Track.LinkBroken = true;
                 }
 
@@ -117,7 +117,7 @@ namespace EDMDownload
             m_Track.HasDownloaded = true;
 
             watch.Stop();
-            Console.WriteLine("(" + watch.ElapsedMilliseconds.ToString("N0") + "ms)");
+            LogHandler.Log("(" + watch.ElapsedMilliseconds.ToString("N0") + "ms)");
             
         }
 
