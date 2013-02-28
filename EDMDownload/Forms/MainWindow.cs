@@ -13,11 +13,19 @@ namespace EDMDownload.Forms
     public partial class MainWindow : Form
     {
         delegate void SetTextCallback(string text);
+        delegate void SetProgressBarCallback(int percent);
 
         public MainWindow()
         {
             InitializeComponent();
             LogHandler.OnLogReceived += new LogAddedHandler(LogHandler_OnLogReceived);
+            LogHandler.OnProgressBarChanged += new ProgressBarHandler(LogHandler_OnProgressBarChanged);
+        }
+
+        void LogHandler_OnProgressBarChanged(int percent)
+        {
+            SetProgressBarCallback d = new SetProgressBarCallback(SetToolStripBarPercentage);
+            this.Invoke(d, new object[] { percent });
         }
 
         void LogHandler_OnLogReceived(string msg)
@@ -30,6 +38,13 @@ namespace EDMDownload.Forms
         {
             list_Log.Items.Add(msg);
             lbl_ToolStrip.Text = msg;
+        }
+
+        void SetToolStripBarPercentage(int perc)
+        {
+            if (perc > 100) perc = 100;
+            if (perc < 0) perc = 0;
+            bar_ToolStrip.Value = perc;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

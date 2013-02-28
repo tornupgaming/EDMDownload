@@ -41,7 +41,7 @@ namespace EDMDownload
 
         private void DownloadFileSync()
         {
-            LogHandler.Log("DL: " + ((m_Track.Title.Length > 60) ? m_Track.Title.Substring(0, 60) : m_Track.Title) + "...");
+            LogHandler.Log("Finding file: " + m_Track.Title);
             System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
             watch.Start(); 
             CookieContainer cookies = new CookieContainer();
@@ -88,6 +88,7 @@ namespace EDMDownload
             filename = filename.Replace(" []", "");
             filename = filename.Replace("[]", "");
 
+            
 
             string postData = "cid=" + cid + "&token=" + token + "&cdt=" + cdt + "&hash=" + hash + "&filename=" + encodedFilename;
 
@@ -101,15 +102,20 @@ namespace EDMDownload
             }
 
             FileStream fs = new FileStream(m_Track.Genre + "/" + filename, FileMode.Create);
-
+            LogHandler.Log("Downloading file: " + filename + 
+                " (" + (myHttpWebResponse.ContentLength / 1024.0f / 1024.0f).ToString("N2") + "MB)");
             byte[] read = new byte[512];
-
+            int readBytes = 0;
             int count = stream.Read(read, 0, read.Length);
 
             while (count > 0)
             {
                 fs.Write(read, 0, count);
                 count = stream.Read(read, 0, read.Length);
+                readBytes += read.Length;
+                float perc = (100.0f / (float)myHttpWebResponse.ContentLength) * (float)readBytes;
+                LogHandler.ChangeProgressBar((int)perc);
+                //LogHandler.Log(readBytes + " / " + myHttpWebResponse.ContentLength);
             }
             fs.Close();
             stream.Close();
@@ -117,7 +123,7 @@ namespace EDMDownload
             m_Track.HasDownloaded = true;
 
             watch.Stop();
-            LogHandler.Log("(" + watch.ElapsedMilliseconds.ToString("N0") + "ms)");
+            LogHandler.Log(filename + "took [" + watch.ElapsedMilliseconds.ToString("N0") + "ms]");
             
         }
 
