@@ -115,7 +115,6 @@ namespace EDMDownload
                 readBytes += read.Length;
                 float perc = (100.0f / (float)myHttpWebResponse.ContentLength) * (float)readBytes;
                 LogHandler.ChangeProgressBar((int)perc);
-                //LogHandler.Log(readBytes + " / " + myHttpWebResponse.ContentLength);
             }
             fs.Close();
             stream.Close();
