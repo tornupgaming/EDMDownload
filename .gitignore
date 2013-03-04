@@ -40,6 +40,10 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.exe
+*.vshost
+*.vshost.exe
+*.edm
 
 # Build results
 [Dd]ebug/
