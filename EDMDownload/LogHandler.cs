@@ -31,6 +31,7 @@ namespace EDMDownload
         public static void Log(string msg)
         {
             LogReceived(msg);
+            System.Diagnostics.Debug.WriteLine("Log: "+msg);
         }
 
         public static void ChangeProgressBar(int percent)

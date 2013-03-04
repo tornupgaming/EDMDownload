@@ -82,5 +82,15 @@ namespace EDMDownload.Forms
 
             LogHandler.Log("Finished!");
         }
+
+        private void btn_Crawl_Click(object sender, EventArgs e)
+        {
+            new Thread(new ThreadStart(CrawlSoundCloud)).Start();
+        }
+
+        private void CrawlSoundCloud()
+        {
+            SoundCloudCrawler.RunCrawl("https://soundcloud.com/housemusic", 10);
+        }
     }
 }

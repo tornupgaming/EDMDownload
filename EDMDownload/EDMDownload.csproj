@@ -74,6 +74,12 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SoundCloudPageCrawler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SoundCloudPageCrawler.Designer.cs">
+      <DependentUpon>SoundCloudPageCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="LivingElectroCrawler.cs" />
     <Compile Include="LogHandler.cs" />
@@ -82,6 +88,7 @@
     <Compile Include="MusicTrackSerializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoundCloudCrawler.cs" />
     <Compile Include="TuneScoopDownloader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SoundCloudPageCrawler.resx">
+      <DependentUpon>SoundCloudPageCrawler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
