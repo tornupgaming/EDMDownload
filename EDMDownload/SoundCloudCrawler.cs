@@ -56,8 +56,10 @@ namespace EDMDownload
                         Directory.CreateDirectory(track.Genre);
                     }
 
-                    FileStream fs = new FileStream(track.Genre + "/" + track.Title, FileMode.Create);
-                    LogHandler.Log("Downloading file: " + track.Title +
+                    string filename = track.Title + ".mp3";
+
+                    FileStream fs = new FileStream(track.Genre + "/" + filename, FileMode.Create);
+                    LogHandler.Log("Downloading file: " + filename +
                         " (" + (myHttpWebResponse.ContentLength / 1024.0f / 1024.0f).ToString("N2") + "MB)");
                     byte[] read = new byte[512];
                     int readBytes = 0;
@@ -77,6 +79,8 @@ namespace EDMDownload
                     track.HasDownloaded = true;
                 }
             }
+
+            LogHandler.Log("Completed SoundCloud crawl!");
         }
     }
 }
