@@ -16,7 +16,8 @@ namespace EDMDownload
 
             for (int i = 0; i < pagesToRun; i++)
             {
-                HttpWebRequest httpRequest = HtmlHelper.GenerateHttpRequest("https://soundcloud.com/" + page, cookies);
+                HttpWebRequest httpRequest = HtmlHelper.GenerateHttpRequest(
+                    "https://soundcloud.com/" + page + "/tracks?format=html&page=" + (i+1), cookies);
                 HttpWebResponse myHttpWebResponse = (HttpWebResponse)httpRequest.GetResponse();
                 var html = new StreamReader(myHttpWebResponse.GetResponseStream()).ReadToEnd();
 
@@ -32,16 +33,16 @@ namespace EDMDownload
                         newMusicTrack.Title = System.Web.HttpUtility.UrlDecode(trackNode.InnerText).Trim();
                         newMusicTrack.PageLink = "https://soundcloud.com" + trackNode.GetAttributeValue("href", "");
                         MusicTrackCollection.AddTrack(newMusicTrack);
-                        LogHandler.Log("Found Track: " + newMusicTrack.Title + " [Link: " + newMusicTrack.PageLink + "]");
+                        //LogHandler.Log("Found Track: " + newMusicTrack.Title + " [Link: " + newMusicTrack.PageLink + "]");
                     }
                 }
-
+                LogHandler.Log("finished page: " + (i+1));
                 MusicTrackCollection.SaveToDisk();
             }
 
             foreach (MusicTrack track in MusicTrackCollection.Tracks)
             {
-                if (track.PageLink.StartsWith("https://soundcloud.com/"))
+                if (track.PageLink.StartsWith("https://soundcloud.com/") && !track.HasDownloaded)
                 {
                     HttpWebRequest httpRequest = HtmlHelper.GenerateHttpRequest(track.PageLink, cookies);
                     HttpWebResponse myHttpWebResponse = (HttpWebResponse)httpRequest.GetResponse();
@@ -50,6 +51,14 @@ namespace EDMDownload
                     httpRequest = HtmlHelper.GenerateHttpRequest(track.PageLink + "/download", cookies);
                     myHttpWebResponse = (HttpWebResponse)httpRequest.GetResponse();
                     Stream stream = myHttpWebResponse.GetResponseStream();
+
+                    if (myHttpWebResponse.ContentLength < 1024 * 1024)
+                    {
+                        LogHandler.Log("Cancelled " + track.Title + "");
+                        track.LinkBroken = true;
+                        MusicTrackCollection.SaveToDisk();
+                        continue;
+                    }
 
                     if (!Directory.Exists(track.Genre))
                     {
@@ -77,6 +86,7 @@ namespace EDMDownload
                     stream.Close();
                     myHttpWebResponse.Close();
                     track.HasDownloaded = true;
+                    MusicTrackCollection.SaveToDisk();
                 }
             }
 
