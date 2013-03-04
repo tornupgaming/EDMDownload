@@ -90,7 +90,7 @@ namespace EDMDownload.Forms
 
         private void CrawlSoundCloud()
         {
-            SoundCloudCrawler.RunCrawl("https://soundcloud.com/housemusic", 10);
+            SoundCloudCrawler.RunCrawl("housemusic", 1);
         }
     }
 }

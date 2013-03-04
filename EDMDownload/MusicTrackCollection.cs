@@ -32,7 +32,7 @@ namespace EDMDownload
                 }
             }
 
-            LogHandler.Log("New: " + ((track.Title.Length > 60) ? track.Title.Substring(0, 60) : track.Title));
+            LogHandler.Log("New Track Added To Collection: " + ((track.Title.Length > 60) ? track.Title.Substring(0, 60) : track.Title));
             Tracks.Add(track);
         }
 

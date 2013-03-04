@@ -19,4 +19,3 @@ C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\ResolveAsse
 C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\EDMDownload.Forms.MainWindow.resources
 C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\Phil\Documents\GitHub\EDMDownload\EDMDownload\obj\x86\Debug\EDMDownload.Forms.SoundCloudPageCrawler.resources
